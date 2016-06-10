@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- <script type="text/javascript" src="script.js"></script> -->
+</head>
+<body>
+
+	<!-- registeration button -->
+   <button id="reg">Register</button>
+   <!-- modal div -->
+   <div id="regmod" class="modal">
+
+	<div class="content">
+	<!-- close button -->
+	<span class="close">X</span>
+
+	 <p align="middle" ><strong><img id="logo" src="logo.png" width="30%" height="30%" align="middle">REGISTER</strong></p>
+
+	 
+
+	 
+	  <div id="register">
+
+	  	<form action="reg.php" method="post">
+		 <input type="text" name="f_name" placeholder="First Name"><br>
+		 <input type="text" name="l_name" placeholder="Last Name"><br>
+		 <input type="text" name="username" placeholder="Username"><br>
+		 <input type="text" name="email" placeholder="Email-ID"><br>
+		 <input type="password" name="password" placeholder="Password"><br>
+		 <input type="submit" name="submit">
+		 </form>
+	  </div>	
+	</div>
+   
+	</div>
+</body>
+
+<script type="text/javascript">
+	
+var modal = document.getElementById('regmod');
+
+// Get the button that opens the modal
+var btn = document.getElementById('reg');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+</html>
