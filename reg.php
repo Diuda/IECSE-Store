@@ -42,6 +42,12 @@ if(!empty($_POST) && empty($errors)===true)
 	{
 		$errors[]='Enter a valid email address';
 	}
+	if(user_exists($_POST['username'],$conn)===true){
+		$errors[]='Username \'' .$_POST['username'].'\' already exists ' ;
+	}
+	if(email_exists($_POST['email'],$conn)===true){
+		$errors[]='Email \''.$_POST['email'].'\' already exists';
+	}
 }
 
 
@@ -59,6 +65,41 @@ if(empty($_POST)===false&&empty($errors)===true)
 	user_register($register_data,$conn);
 	
 }
+
+function sanatize($data,$conn)
+{
+	return htmlentities(strip_tags(mysqli_real_escape_string($conn,$data)));
+}
+
+// function array_sanatize(&$items)
+// {
+// 	$items=htmlentities(strip_tags(mysql_real_escape_string($items)));
+// }
+function user_exists($username,$conn)//To see whether the username exists or not
+{
+	$username = sanatize($username,$conn);
+	$query="Select `user_id` from `users` where `username`='$username'";
+	$result=mysqli_query($conn,$query);
+	if(mysqli_num_rows($result)==1)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
+function email_exists($email,$conn){
+	$email=sanatize($email,$conn);
+	$query="Select `user_id` from `users` where `email`='$email'";
+	$result=mysqli_query($conn,$query);
+	if(mysqli_num_rows($result)==1)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
 
 function user_register($register_data,$conn)
 {
