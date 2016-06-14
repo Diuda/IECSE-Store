@@ -7,7 +7,7 @@ p{
     font-size: 40px;
 }
 
-.modal {
+.modal { 
     display: none; 
     position: relative;
     z-index: 1; 

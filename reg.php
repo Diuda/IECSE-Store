@@ -71,10 +71,10 @@ function sanatize($data,$conn)
 	return htmlentities(strip_tags(mysqli_real_escape_string($conn,$data)));
 }
 
-// function array_sanatize(&$items)
-// {
-// 	$items=htmlentities(strip_tags(mysql_real_escape_string($items)));
-// }
+function array_sanatize(&$items,$conn)
+{
+	$items=htmlentities(strip_tags(mysql_real_escape_string($conn,$items)));
+}
 function user_exists($username,$conn)//To see whether the username exists or not
 {
 	$username = sanatize($username,$conn);
@@ -104,7 +104,7 @@ function email_exists($email,$conn){
 function user_register($register_data,$conn)
 {
 	$register_data['password']=md5($register_data['password']);
-	array_walk($register_data, 'array_sanatize');
+	array_walk($register_data,$conn, 'array_sanatize');
 	$fields='`'.implode('`,`', array_keys($register_data)).'`';
 	$data='\''.implode('\',\'', $register_data).'\'';
 	$query="insert into `users` ($fields) values ($data)";
