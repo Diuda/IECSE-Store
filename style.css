@@ -1,10 +1,10 @@
-@font-face{
+/*@font-face{
     font-family: "testFont";
     src:url(Enchanted Land.otf);
-}
+}*/
 p{
-    font-family: "testFont";
-    font-size: 40px;
+    font-family: "Sans-Serif";
+    font-size: 20px;
 }
 
 .modal { 
@@ -97,4 +97,9 @@ input[type=submit]:hover{
 #logo{
         vertical-align: middle;
 
+}
+#register{
+    padding: 20px;
+    background-color: #DCC6E0;
+    border: 1px solid black;
 }
