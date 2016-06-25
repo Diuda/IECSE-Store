@@ -83,10 +83,11 @@ hr{
 h3{
 	font-family: 'Mogra', cursive;
 }
-/*#p1{
+.pro{
 	position: relative;
 	height: 60%;
 	width: 30%;
 	margin-left: 10px;
 	background-color: white;
-}*/
+	border: 1px solid black;
+}
