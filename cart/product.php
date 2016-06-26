@@ -10,24 +10,27 @@ if (!$conn) {
 	}
 
 $image_url=array();
+$price=array();
+$stock=array();
+$title=array();
 
 	$query="Select * from `products`";
 	$result=mysqli_query($conn,$query);
 	if(mysqli_num_rows($result)>0)
 	{	//getting data from database
 		while($row=mysqli_fetch_assoc($result))
-		{
-			// echo "p_id: ".$row["p_id"]."<br> title: ".$row["title"]."<br> description: ".$row["description"]."<br> stock: ".$row["stock"]."<br> image: ".$row["image"]."<br><br><br>"; 
+		{ 
 
-				//storing the image path in array with product id	
+				//storing the info about the product in array with product id	
 				$image_url[$row["p_id"]]=$row["image"];
+				$price[$row["p_id"]]=$row["price"];
+				$stock[$row["p_id"]]=$row["stock"];
+				$title[$row["p_id"]]=$row["title"];
 		}
 
 	}
-		// echo "0 result";
-		//displaying image url along with product id
-		// var_dump($image_url);
-		echo json_encode($image_url);
+		//encoding all the information about the product as json
+		echo json_encode(array('img'=>$image_url,'price'=>$price,'stock'=>$stock,'title'=>$title));
 		
 
 mysqli_close($conn);
